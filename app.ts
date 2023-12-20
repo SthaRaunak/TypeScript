@@ -1,18 +1,25 @@
-//explicitly defining types for object
-//we can explicitly define it but its better for typescript to infer this instead
+//Arrays in typescript
 
-const person: {
-  name: string;
-  age: number;
-} = {
+// const person: {
+//   name: string;
+//   age: number;
+// } = {
+const person = {
   name: "Raunak",
   age: 17,
+  hobbies: ["Guitar", "Programming"],
 };
-//wrong way of defining type of object is
-// const person: object = { key: value}
-//This makes it so that the compiler has no knowledge about the object its self like its key's and its value types but just will know that this is an object
 
-//Even better way is let typescript infer it
-// const person = { key : value}
+let favouriteActivites: string[];
 
-console.log(person.name);
+favouriteActivites = "Sports"; //gives an error as were expecting array of string instead
+favouriteActivites = ["Sports", 1]; // again an error number wasnt being expected could be avoided with any type
+favouriteActivites = ["Sports"]; // no error
+console.log(person.name); 
+
+for (const hobby of person.hobbies) {
+  //here hobby is automatically infered as string by typesciprt and lets us do all the string methods on it as it knows person.hobbies is a array of strings
+  console.log(hobby.toUpperCase());
+  // console.log(hobby.map()) !!Error: map doesnt exist on type string
+}
+
