@@ -12,7 +12,7 @@
 // const READ_ONLY = 1;
 // const AUTHOR = 2;
 
-// Enums in TypeScript offer a way to work with a set of named constants in a type-safe manner, making the code more readable and maintainable. 
+// Enums in TypeScript offer a way to work with a set of named constants in a type-safe manner, making the code more readable and maintainable.
 enum Role {
   ADMIN,
   READ_ONLY,
