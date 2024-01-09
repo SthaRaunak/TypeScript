@@ -1,5 +1,7 @@
 class Department {
-  name: string;
+  public name: string; //just like private theres public but its the default accesssible from outside
+  private employees: string[] = []; // private restricts this prpoerties access to only within the class
+  //public and private are access modifiers
   constructor(n: string) {
     this.name = n;
   }
@@ -9,16 +11,37 @@ class Department {
   describe(this: Department) {
     console.log(`Department: ${this.name}`);
   }
+
+  addEmployee(employee: string) {
+    //validation etc
+    this.employees.push(employee);
+  }
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
 }
 
 const marketing = new Department("Marketing");
 
+marketing.addEmployee("Raunak");
+marketing.addEmployee("Lexical");  
+// marketing.employees[2] = 'Anna';
+// we can add like this to rn but this way we do not call the add Employee function which might have some validation so to remove accessibilty from outside of the class we use private keyword
+//once we used private key word this shows compilation error
+
 console.log(marketing);
 marketing.describe();
+marketing.printEmployeeInformation();
 
-const marketingCopy = { name: "asdasd", describe: marketing.describe };
+marketing.name = "NEW NAME"; //this is possible because name is public
+
+// const marketingCopy = { name: "asdasd", describe: marketing.describe };
 //"this" typically refers to the which is responsible for calling the method
 
-marketingCopy.describe(); // will ouput undefined as marketingCopy has no such name property
+// marketingCopy.describe();
+// will ouput undefined as marketingCopy has no such name property
 //we get error here because its not type of Deparment as it doesnt have name property
 // so once we add name prpoerty to the marketing Copy the error is gone
+
+
