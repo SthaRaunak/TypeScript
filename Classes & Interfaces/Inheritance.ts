@@ -1,7 +1,7 @@
 //Inheritance
 
 class Department2 {
-  private employees: string[] = [];
+  protected employees: string[] = []; // protected: unlike private protected makes the property available to its subclasses 
 
   constructor(private readonly id: string, public name: string) {}
 
@@ -12,6 +12,11 @@ class Department2 {
   addEmployee(employee: string) {
     //validation
     this.employees.push(employee);
+  }
+
+  printEmployee(){
+    console.log(this.employees.length);
+    console.log(this.employees);
   }
 }
 
@@ -39,6 +44,17 @@ class AccountingDepartment extends Department2 {
     console.log(this.reports)
   }
 
+  //overriding the parent class method
+  addEmployee(employee: string) {
+    if(employee === 'Raunak'){
+      return;
+    }
+
+    // employees.push(employee); //this wont work if the employees property in parent class is private 
+
+    this.employees.push(employee);
+  }
+
 }
 
 const infoTech = new ITDepartment("c1", ["Raunak Shrestha"]);
@@ -50,4 +66,14 @@ const accounting = new AccountingDepartment("a1",[]);
 console.log(accounting)
 accounting.addReport('Something went wrong')
 
+accounting.addEmployee('Raunak');
+accounting.addEmployee('John Doe')
+
 accounting.getReports();
+accounting.printEmployee();
+//A thing to note about private properties , they are confined to class in which they are defined and even derived classes dont have direct access to them
+
+
+/*
+private members cannot be accessed outside the declaring class, while protected members can be accessed within the declaring class and its subclasses.
+*/
