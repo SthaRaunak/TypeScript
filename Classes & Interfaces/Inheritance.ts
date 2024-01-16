@@ -31,6 +31,8 @@ class Department2 {
     return { name: name };
   }
 
+  
+
 } 
 
 class ITDepartment extends Department2 {
