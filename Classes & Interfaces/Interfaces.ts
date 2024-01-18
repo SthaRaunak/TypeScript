@@ -1,7 +1,7 @@
 //Interface describes the structure of an object
 
 interface Person {
-       name: string ;
+       name: string ; 
        age: number;
        greet(phrase: string) : void;
 }
@@ -118,3 +118,39 @@ const partTImeEmployee = new PartTimeEmployee(202,"John Doe","Designer",20,15);
 console.log("Part-Time Employee Salary",partTImeEmployee.getSalary())
 
 //Conclusion : By using interfaces, we ensure that both FullTimeEmployee and PartTimeEmployee provide the necessary properties and methods expected for an Employee, making the code more predictable and maintainable.
+
+
+
+
+//Interface with read only prpoerty
+interface AppConfig{
+    readonly apiUrl: string;
+    readonly maxRequests: number;
+}
+
+class AppConfiguration implements AppConfig{
+    apiUrl: string; // we dont have to add readonly here as after we implement the inserface it TS assumes its a readonly property 
+    maxRequests: number;
+
+    constructor(apiUrl:string , maxRequests: number){
+        this.apiUrl = apiUrl;
+        this.maxRequests = maxRequests;
+    }
+
+    // Attempting to modify the properties in a method will result in a compilation error
+    // updateConfig(newUrl: string, newMaxRequests: number): void {
+    //     this.apiUrl = newUrl; // Error: Cannot assign to 'apiUrl' because it is a read-only property.
+    //     this.maxRequests = newMaxRequests; // Error: Cannot assign to 'maxRequests' because it is a read-only property.
+    // }
+}
+
+//Usage 
+
+const config = new AppConfiguration("htttps://api.example.com",5);
+console.log(config);
+
+
+//Attempting to modify the prperties wil resulrt in a compilation error.
+
+// config.apiURl = "asdasdasd.com" // Error: Cannot assign to 'apiUrl' because it is a read-only property.
+// config.maxRequests = 20; // Error: Cannot assign to 'maxRequests' because it is a read-only property.
