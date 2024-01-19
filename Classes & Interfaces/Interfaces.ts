@@ -154,3 +154,47 @@ console.log(config);
 
 // config.apiURl = "asdasdasd.com" // Error: Cannot assign to 'apiUrl' because it is a read-only property.
 // config.maxRequests = 20; // Error: Cannot assign to 'maxRequests' because it is a read-only property.
+
+//Inheritance in Interface i.e using extend
+
+//Base interface
+interface Vehicle {
+    start(): void;
+    stop(): void;
+}
+
+//derived interface extending the base interface
+
+interface Car extends Vehicle {
+    drive(): void;
+}
+
+class Sedan implements Car {
+    //now we have to implement methods from both vehicle and car interfaces or we get erro
+    start(): void {
+        console.log("Sedan starting....");
+    }
+    stop(): void {
+        console.log("Sedan stopping .... ");
+    }
+
+    drive(): void {
+        console.log("Sedan is on the move");
+    }
+
+    //additional methods  specific to sedan class
+    park() {
+        console.log("Sedan parked.");
+    }
+}
+
+//instance
+const mySedan = new Sedan();
+
+// Call methods from both Vehicle and Car interfaces
+mySedan.start();  // Output: Sedan starting...
+mySedan.drive();  // Output: Sedan is on the move
+mySedan.stop();   // Output: Sedan stopping...
+
+// Call the additional method specific to the Sedan class
+mySedan.park();   // Output: Sedan parked.
