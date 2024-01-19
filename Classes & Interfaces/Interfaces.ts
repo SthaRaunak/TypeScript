@@ -33,7 +33,9 @@ interface Greetable{
 
 let user2 : Greetable = {
     name : "Raunak",
-    greet(phrase: string): void;
+    greet(phrase: string): void{
+        console.log("Meow")
+    }
 }
 
 class Person1 implements Greetable { //use interface in class like this we can implement different intrefaces like implements interface1, interface2
@@ -214,4 +216,54 @@ let add: addFn;
 add = (n1: number, n2: number): number =>{
     return n1+n2;
 }
+
+
+//optional properties & properties
+
+//interface with optional properties
+
+interface User {
+    username: string;
+    email: string;
+    age ?: number; //Optional property
+}
+
+class UserProfile implements User {
+    //properties from the interface
+    username: string;
+    email: string;
+    age?: number; // this is not required as it is optional in interface but were adding it here and making it optional for the constructor or the class to have this property in the constructor
+
+    //constructor with mandatory parameters and an optional paremeter
+    constructor(username: string, email: string, age?: number){
+        this.username = username;
+        this.email = email;
+        this.age = age;
+    }
+
+
+    //methods
+
+    displayProfile(){
+        console.log(`Username: ${this.username}`);
+        console.log(`email: ${this.email}`);
+
+
+        if(this.age != undefined){
+            console.log(`Age: ${this.age}`)
+        }else{
+            console.log("Age notprovided")
+        }
+    }
+
+}
+
+
+//create instanmces with and without the optional age parameter
+
+const user101 = new UserProfile("Raunak Shrestha","raunak@gmail.com",18);
+const user202 = new UserProfile("Alice Smith" ,"alice@gmaile.lcom");
+
+user101.displayProfile();
+user202.displayProfile();
 
