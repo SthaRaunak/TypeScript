@@ -198,3 +198,20 @@ mySedan.stop();   // Output: Sedan stopping...
 
 // Call the additional method specific to the Sedan class
 mySedan.park();   // Output: Sedan parked.
+
+//Interfaces can also be used define function types
+
+//refresher: type aliases fuction type
+// type addFn = (a:number,b:number) => number;
+
+interface addFn{
+    (a:number, b:number) : number;
+}
+
+// we can do this but custom types is more common and shorter this is just to be aware that this way of defining a function type exists
+
+let add: addFn;
+add = (n1: number, n2: number): number =>{
+    return n1+n2;
+}
+
